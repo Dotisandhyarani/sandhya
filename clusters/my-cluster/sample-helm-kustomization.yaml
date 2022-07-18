@@ -12,4 +12,15 @@ spec:
     kind: GitRepository
     name: sample-helm-repo
   targetNamespace: default
+  patches:
+    - patch: |-
+        apiVersion: autoscaling/v2beta2
+        kind: HorizontalPodAutoscaler
+        metadata:
+          name: sample-helm-repo
+        spec:
+          minReplicas: 3             
+      target:
+        name: sample-helm-repo
+        kind: HorizontalPodAutoscaler
 
